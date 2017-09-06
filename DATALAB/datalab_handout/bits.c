@@ -171,7 +171,10 @@ NOTES:
  *   Rating: 1
  */
 int evenBits(void) {
-  return 2;
+  int var1 = 0x55;
+  var1 = var1 | (0x55 << 8);
+  var1 = var1 | (var1 << 16);
+  return var1;
 }
 /* 
  * minusOne - return a value of -1 
@@ -180,7 +183,9 @@ int evenBits(void) {
  *   Rating: 1
  */
 int minusOne(void) {
-  return 2;
+  //why does this happen. 
+  int var1;
+  return ~var1;
 }
 /* 
  * copyLSB - set all bits of result to least significant bit of x
@@ -190,7 +195,8 @@ int minusOne(void) {
  *   Rating: 2
  */
 int copyLSB(int x) {
-  return 2;
+  int var1 = (x << 31) >> 31;
+  return var1;
 }
 /* 
  * divpwr2 - Compute x/(2^n), for 0 <= n <= 30
@@ -201,6 +207,7 @@ int copyLSB(int x) {
  *   Rating: 2
  */
 int divpwr2(int x, int n) {
+   int var1 = (1 << x);
    return 2;
 }
 /* 
@@ -212,7 +219,9 @@ int divpwr2(int x, int n) {
  *   Rating: 2
  */
 int getByte(int x, int n) {
-	return 2;
+  int var1 = n << 3;
+  int var2 = x >> var1;
+  return var2 & 0xFF;
 }
 /* 
  * anyOddBit - return 1 if any odd-numbered bit in word set to 1
@@ -222,7 +231,11 @@ int getByte(int x, int n) {
  *   Rating: 2
  */
 int anyOddBit(int x) {
-   return 2;
+   int var1 = 0xaa;
+   var1 = var1 | (0xaa << 8);
+   var1 = var1 | (var1 << 16);
+   var1 = var1 & x;
+   return !!var1;
 }
 /* 
  * isNegative - return 1 if x < 0, return 0 otherwise 
@@ -232,7 +245,7 @@ int anyOddBit(int x) {
  *   Rating: 2
  */
 int isNegative(int x) {
-    return 2;
+    return 0x1 & (x >> 32);
 }
 /* 
  * isAsciiDigit - return 1 if 0x30 <= x <= 0x39 (ASCII codes for characters '0' to '9')
@@ -244,6 +257,7 @@ int isNegative(int x) {
  *   Rating: 3
  */
 int isAsciiDigit(int x) {
+ 
  return 2;
 }
 /* 
@@ -314,7 +328,12 @@ int isNonZero(int x) {
  *   Rating: 4
  */
 int absVal(int x) {
-  return 2;
+  int var1 = 0x01;
+  int var2 = 0x1 & (x >> 32);
+  var1 = var2 & var1;
+  var1 = var1 << 32;
+  var1 = var1 ^ x;
+  return (~(var1) + 1);
 }
 /*
  * isPower2 - returns 1 if x is a power of 2, and 0 otherwise
