@@ -208,6 +208,7 @@ int copyLSB(int x) {
  */
 int divpwr2(int x, int n) {
    int var1 = (1 << x);
+   
    return 2;
 }
 /* 
@@ -257,8 +258,11 @@ int isNegative(int x) {
  *   Rating: 3
  */
 int isAsciiDigit(int x) {
- 
- return 2;
+  int var1 = 0x30;
+  var1 = var1 ^ x;
+  var1 = var1 + 7;
+  var1 = var1 >> 4;
+  return !var1;
 }
 /* 
  * fitsBits - return 1 if x can be represented as an 
